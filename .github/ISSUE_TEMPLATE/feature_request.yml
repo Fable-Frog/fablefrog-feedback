@@ -1,0 +1,61 @@
+name: Feature Request
+description: Suggest a new feature or improvement for Fable Frog
+labels: ["enhancement", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Have an idea for Fable Frog? We'd love to hear it! Please check
+        [existing feature requests](https://github.com/Fable-Frog/fablefrog-feedback/issues?q=is%3Aissue+label%3Aenhancement)
+        first to avoid duplicates — if one already exists, give it a :thumbsup: instead.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem Statement
+      description: "Is your feature request related to a problem? Describe it."
+      placeholder: "I'm always frustrated when..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed Solution
+      description: "Describe the feature or change you'd like to see."
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered
+      description: "Have you considered any alternative solutions or workarounds?"
+    validations:
+      required: false
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: App Area
+      description: "Which part of the app does this relate to?"
+      options:
+        - Library / Browse
+        - Player / Playback
+        - Downloads
+        - CarPlay
+        - Sync / Progress
+        - Playlists / Lists
+        - Widgets
+        - Settings
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: "Mockups, screenshots of other apps, or any other context."
+    validations:
+      required: false

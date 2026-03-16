@@ -1,0 +1,135 @@
+name: Playback / Audio Issue
+description: Report a problem with audio playback, streaming, or CarPlay
+labels: ["playback", "bug", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Audio issues can be tricky to diagnose. Please provide as much detail as
+        possible about your setup and the content you were playing.
+
+  - type: input
+    id: app-version
+    attributes:
+      label: App Version
+      description: "Found in Settings → About (e.g., 1.0.0 build 42)"
+      placeholder: "1.0.0 (42)"
+    validations:
+      required: true
+
+  - type: input
+    id: ios-version
+    attributes:
+      label: iOS Version
+      placeholder: "17.4"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: device
+    attributes:
+      label: Device
+      options:
+        - iPhone 16 Pro Max
+        - iPhone 16 Pro
+        - iPhone 16 Plus
+        - iPhone 16
+        - iPhone 15 Pro Max
+        - iPhone 15 Pro
+        - iPhone 15 Plus
+        - iPhone 15
+        - iPhone SE (3rd gen)
+        - iPad Pro
+        - iPad Air
+        - iPad mini
+        - iPad
+        - Other (specify in description)
+    validations:
+      required: true
+
+  - type: input
+    id: server-version
+    attributes:
+      label: Audiobookshelf Server Version
+      placeholder: "2.8.0"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: audio-format
+    attributes:
+      label: Audio Format
+      description: "If known, what format is the audiobook?"
+      options:
+        - MP3
+        - M4A / M4B (AAC)
+        - FLAC
+        - OGG / Opus
+        - Unknown
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: playback-mode
+    attributes:
+      label: Streaming or Downloaded?
+      options:
+        - Streaming
+        - Downloaded (offline)
+        - Both
+    validations:
+      required: true
+
+  - type: dropdown
+    id: carplay
+    attributes:
+      label: Does this involve CarPlay?
+      options:
+        - "No"
+        - "Yes"
+        - Not sure
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: "What went wrong with playback?"
+      placeholder: "Describe the issue..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      placeholder: |
+        1. Start playing '...'
+        2. Skip to chapter '...'
+        3. Notice audio '...'
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Behavior
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: "Anything else — network conditions, Bluetooth audio device, sleep timer active, etc."
+    validations:
+      required: false

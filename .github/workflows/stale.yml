@@ -1,0 +1,30 @@
+name: Manage Stale Issues
+
+on:
+  schedule:
+    - cron: "0 6 * * *" # Daily at 6am UTC
+
+permissions:
+  issues: write
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/stale@v9
+        with:
+          stale-issue-message: >
+            This issue has been automatically marked as stale because it has not
+            had any activity for 60 days. It will be closed in 14 days if no
+            further activity occurs. If this issue is still relevant, please
+            leave a comment or add a 👍 reaction to keep it open. Thank you for
+            your contribution!
+          close-issue-message: >
+            This issue has been automatically closed due to inactivity. If the
+            problem persists or you have new information, feel free to reopen it.
+          days-before-stale: 60
+          days-before-close: 14
+          stale-issue-label: "stale"
+          exempt-issue-labels: "priority/critical,priority/high,planned,in-progress,pinned"
+          days-before-pr-stale: -1
+          days-before-pr-close: -1

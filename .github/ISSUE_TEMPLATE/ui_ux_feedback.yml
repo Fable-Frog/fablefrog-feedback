@@ -1,0 +1,63 @@
+name: UI/UX Feedback
+description: Share suggestions about the design, layout, or usability of Fable Frog
+labels: ["ui/ux", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Design and usability feedback helps us make Fable Frog better for everyone.
+        Screenshots and mockups are especially helpful!
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Screen / Area
+      description: "Which part of the app does this feedback relate to?"
+      options:
+        - Home / Feed
+        - Library / Browse
+        - Book Detail
+        - Player (full screen)
+        - Mini Player
+        - Downloads
+        - CarPlay
+        - Playlists / Lists
+        - Settings
+        - Widgets
+        - Navigation / Tab Bar
+        - Themes / Appearance
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: current
+    attributes:
+      label: Current Behavior
+      description: "Describe the current design or interaction you'd like to change."
+    validations:
+      required: true
+
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Suggested Improvement
+      description: "Describe how you'd like it to work or look instead."
+    validations:
+      required: true
+
+  - type: textarea
+    id: mockup
+    attributes:
+      label: Mockup / Screenshot
+      description: "If you have a mockup, sketch, or screenshot showing the issue or your idea, drag and drop it here."
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: "Any other context — accessibility concerns, comparisons to other apps, etc."
+    validations:
+      required: false

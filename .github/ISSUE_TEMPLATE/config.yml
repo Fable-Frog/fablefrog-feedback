@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Ask a Question
+    url: https://github.com/Fable-Frog/fablefrog-feedback/discussions/categories/q-a
+    about: Use Discussions for setup help, how-to questions, and general support.
+  - name: Feature Brainstorming
+    url: https://github.com/Fable-Frog/fablefrog-feedback/discussions/categories/feature-ideas
+    about: Have a rough idea that isn't fully formed yet? Start a discussion.
+  - name: Audiobookshelf Server Issues
+    url: https://github.com/audiobookshelf/audiobookshelf/issues
+    about: If your issue is with the Audiobookshelf server (not the Fable Frog app), report it here.

@@ -1,0 +1,50 @@
+name: Auto-Label Issues
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  issues: write
+
+jobs:
+  auto-label:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            const issue = context.payload.issue;
+            const title = (issue.title || '').toLowerCase();
+            const body = (issue.body || '').toLowerCase();
+            const text = `${title} ${body}`;
+
+            const areaKeywords = {
+              'area/player': ['player', 'playback', 'audio', 'pause', 'play ', 'skip', 'seek', 'sleep timer', 'now playing', 'lock screen', 'control center'],
+              'area/library': ['library', 'browse', 'search', 'filter', 'sort', 'shelf', 'home feed', 'collection'],
+              'area/downloads': ['download', 'offline', 'storage', 'disk space', 'cache'],
+              'area/carplay': ['carplay', 'car play', 'car screen'],
+              'area/sync': ['sync', 'progress', 'listening position', 'bookmark'],
+              'area/auth': ['login', 'auth', 'sign in', 'sign out', 'token', 'password', 'credential', 'oidc', 'openid'],
+              'area/widgets': ['widget', 'home screen widget', 'lock screen widget'],
+              'area/playlists': ['playlist', 'queue', 'up next'],
+            };
+
+            const labelsToAdd = [];
+
+            for (const [label, keywords] of Object.entries(areaKeywords)) {
+              if (keywords.some(kw => text.includes(kw))) {
+                labelsToAdd.push(label);
+              }
+            }
+
+            if (labelsToAdd.length > 0) {
+              await github.rest.issues.addLabels({
+                owner,
+                repo,
+                issue_number: issue.number,
+                labels: labelsToAdd,
+              });
+              console.log(`Added labels: ${labelsToAdd.join(', ')}`);
+            }

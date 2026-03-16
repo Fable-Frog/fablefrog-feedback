@@ -1,0 +1,56 @@
+name: Label Popular Issues
+
+on:
+  schedule:
+    - cron: "0 9 * * 1" # Every Monday at 9am UTC
+
+permissions:
+  issues: write
+
+jobs:
+  popular:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const THRESHOLD = 10;
+            const LABEL = 'popular';
+
+            const issues = await github.paginate(github.rest.issues.listForRepo, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              per_page: 100,
+            });
+
+            for (const issue of issues) {
+              if (issue.pull_request) continue;
+
+              const reactions = await github.rest.reactions.listForIssue({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+              });
+
+              const thumbsUp = reactions.data.filter(r => r.content === '+1').length;
+              const hasLabel = issue.labels.some(l => l.name === LABEL);
+
+              if (thumbsUp >= THRESHOLD && !hasLabel) {
+                await github.rest.issues.addLabels({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: issue.number,
+                  labels: [LABEL],
+                });
+                console.log(`Added '${LABEL}' to #${issue.number} (${thumbsUp} 👍)`);
+              } else if (thumbsUp < THRESHOLD && hasLabel) {
+                await github.rest.issues.removeLabel({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: issue.number,
+                  name: LABEL,
+                });
+                console.log(`Removed '${LABEL}' from #${issue.number} (${thumbsUp} 👍)`);
+              }
+            }

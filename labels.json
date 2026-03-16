@@ -1,0 +1,35 @@
+[
+  {"name": "bug", "color": "d73a4a", "description": "Something isn't working"},
+  {"name": "enhancement", "color": "a2eeef", "description": "New feature or improvement"},
+  {"name": "ui/ux", "color": "f9a8d4", "description": "Design and usability feedback"},
+  {"name": "playback", "color": "f97316", "description": "Audio playback, streaming, or CarPlay issue"},
+  {"name": "question", "color": "0075ca", "description": "Further information is requested"},
+  {"name": "duplicate", "color": "cfd3d7", "description": "This issue already exists"},
+  {"name": "wontfix", "color": "9e9e9e", "description": "This will not be worked on"},
+
+  {"name": "needs-triage", "color": "fbca04", "description": "New issue awaiting maintainer review"},
+  {"name": "confirmed", "color": "0e8a16", "description": "Validated and accepted"},
+  {"name": "in-progress", "color": "1d76db", "description": "Actively being worked on"},
+  {"name": "planned", "color": "bfd4f2", "description": "On the roadmap"},
+  {"name": "shipped", "color": "2ea44f", "description": "Released in a version"},
+  {"name": "needs-info", "color": "e4e669", "description": "Waiting for more information from the reporter"},
+
+  {"name": "priority/critical", "color": "b60205", "description": "Crash, data loss, or blocking issue"},
+  {"name": "priority/high", "color": "d93f0b", "description": "Major impact, needs attention soon"},
+  {"name": "priority/medium", "color": "f9c513", "description": "Moderate impact"},
+  {"name": "priority/low", "color": "0e8a16", "description": "Minor or cosmetic"},
+
+  {"name": "area/library", "color": "1d76db", "description": "Library browsing and search"},
+  {"name": "area/player", "color": "1d76db", "description": "Player and playback controls"},
+  {"name": "area/downloads", "color": "1d76db", "description": "Downloading and offline access"},
+  {"name": "area/carplay", "color": "1d76db", "description": "CarPlay integration"},
+  {"name": "area/sync", "color": "1d76db", "description": "Progress sync and bookmarks"},
+  {"name": "area/auth", "color": "1d76db", "description": "Login and authentication"},
+  {"name": "area/widgets", "color": "1d76db", "description": "Home and Lock Screen widgets"},
+  {"name": "area/playlists", "color": "1d76db", "description": "Playlists and queues"},
+
+  {"name": "good-first-issue", "color": "7057ff", "description": "Good for newcomers"},
+  {"name": "popular", "color": "ff6f00", "description": "10+ community upvotes"},
+  {"name": "beta", "color": "5319e7", "description": "Related to TestFlight beta"},
+  {"name": "stale", "color": "ededed", "description": "No recent activity"}
+]

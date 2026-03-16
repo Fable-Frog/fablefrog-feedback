@@ -1,0 +1,64 @@
+name: Close Needs-Info Issues
+
+on:
+  schedule:
+    - cron: "0 7 * * *" # Daily at 7am UTC
+
+permissions:
+  issues: write
+
+jobs:
+  close-needs-info:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const DAYS = 14;
+            const LABEL = 'needs-info';
+            const cutoff = new Date(Date.now() - DAYS * 24 * 60 * 60 * 1000);
+
+            const issues = await github.paginate(github.rest.issues.listForRepo, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: LABEL,
+              per_page: 100,
+            });
+
+            for (const issue of issues) {
+              // Check if the issue author has commented since the label was applied
+              const comments = await github.rest.issues.listComments({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                per_page: 100,
+              });
+
+              const authorReplied = comments.data.some(
+                c => c.user.login === issue.user.login && new Date(c.created_at) > cutoff
+              );
+
+              if (authorReplied) continue;
+
+              // Check if last activity is older than cutoff
+              const lastUpdate = new Date(issue.updated_at);
+              if (lastUpdate > cutoff) continue;
+
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                body: `This issue has been automatically closed because additional information was requested but no response was received for ${DAYS} days.\n\nIf you have the requested information, please feel free to reopen this issue and provide it. We're happy to continue investigating!`,
+              });
+
+              await github.rest.issues.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                state: 'closed',
+                state_reason: 'not_planned',
+              });
+
+              console.log(`Closed #${issue.number} (needs-info, no response)`);
+            }
