@@ -1,0 +1,47 @@
+name: Website Report
+description: Report a typo, request more info, flag incorrect content, or other website feedback
+labels: ["website", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping us improve the Fable Frog website! Please provide details below.
+
+  - type: dropdown
+    id: report-type
+    attributes:
+      label: Report Type
+      options:
+        - Typo or grammatical error
+        - Incorrect or outdated information
+        - Request for more information
+        - Broken link or missing image
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: page-url
+    attributes:
+      label: Page URL
+      description: The URL of the page where you found the issue.
+      placeholder: "https://fablefrog.app/..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Describe what you found or what you'd like to see changed.
+      placeholder: "Describe the issue or suggestion..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: "If applicable, add screenshots to help illustrate the issue. Drag and drop images here."
+    validations:
+      required: false
