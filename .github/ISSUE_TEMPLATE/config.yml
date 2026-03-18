@@ -7,5 +7,5 @@ contact_links:
     url: https://github.com/Fable-Frog/fablefrog-feedback/discussions/categories/feature-ideas
     about: Have a rough idea that isn't fully formed yet? Start a discussion.
   - name: Audiobookshelf Server Issues
-    url: https://github.com/audiobookshelf/audiobookshelf/issues
+    url: https://github.com/advplyr/audiobookshelf/issues
     about: If your issue is with the Audiobookshelf server (not the Fable Frog app), report it here.
